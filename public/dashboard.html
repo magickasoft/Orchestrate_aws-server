@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <title>
+
+    </title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+
+    <link href="/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/admin/layout.css" rel="stylesheet" type="text/css" />
+
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="/js/mui.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-cookies.min.js"></script>
+    <script src="/js/angular-animate.min.js"></script>
+    <script src="/js/angular-route.min.js"></script>
+    <script src="/js/loading-bar.min.js"></script>
+
+    <script src="/js/lodash.min.js"></script>
+    <script src="/js/restangular.min.js"></script>
+
+    <script>
+
+      var API_BASE = '/api/';
+      var HTML_BASE = '/';
+      var API_ACCESS_TOKEN = 'token_orchestrate';
+      var API_LOGIN_ENDPOINT  = API_BASE + "oauth/token";
+      var API_AUTH_ENDPOINT   = API_BASE + "auth";
+      var API_AUTH_HEADER     = 'Authorization'; // can be X-Access-Token
+      var API_REDIRECT_ON_LOGOUT = "/auth";
+
+    </script>
+    <script src="/js/admin/layout.js"></script>
+
+    <script src="/js/admin/dashboard.js"></script>
+    <script src="/js/admin/models.js"></script>
+    <script src="/js/admin/controllers.js"></script>
+    <script src="/js/admin/directives.js"></script>
+
+</head>
+<body ng-app="app">
+  <div class="app-content">
+      <div id="sidedrawer" class="mui--no-user-select">
+
+          <div id="sidedrawer-brand" class="mui--appbar-line-height mui--text-title">Orchestrate</div>
+          <div class="mui-divider"></div>
+
+          <ul>
+            <li><a class="mui-btn mui-btn--default" href="#/groups">Groups</a></li>
+            <li><a class="mui-btn mui-btn--default" href="#/instruments">Choral Parts</a></li>
+            <li><a class="mui-btn mui-btn--default" href="#/recordings">Recordings</a></li>
+            <li><a class="mui-btn mui-btn--default" href="#/users">Users</a></li>
+          </ul>
+          <div class="mui-divider"></div>
+          <ul>
+            <li><a class="mui-btn" style="color:#aaa" ng-click="logout()" href="javascript:void(0)">Log Out</a></li>
+          </ul>
+      </div>
+
+      <header id="header">
+        <div class="mui-appbar mui--appbar-line-height">
+          <div class="mui-container-fluid">
+            <a class="sidedrawer-toggle mui--visible-xs-inline-block js-show-sidedrawer">☰</a>
+            <a class="sidedrawer-toggle mui--hidden-xs js-hide-sidedrawer">☰</a>
+            <span class="mui--text-title">Orchestrate Admin</span>
+          </div>
+        </div>
+      </header>
+      <div id="content-wrapper">
+         <div class="mui--appbar-height"></div>
+         <div class="mui-container-fluid">
+
+            <div class="alerts-container" ng-show="errors.length">
+                <div ng-repeat="e in errors" class="alert alert-danger" ng-bind="e | nice_error"></div>
+            </div>
+
+            <div ng-view></div>
+         </div>
+      </div>
+<!--
+      <footer id="footer">
+          <div class="mui-container-fluid" style="text-align:right"> <br /> Domains for sale &copy; <?php echo date('Y' ) ?></div>
+      </footer>
+-->
+   </div>
+
+
+   </body>
+</html>
+

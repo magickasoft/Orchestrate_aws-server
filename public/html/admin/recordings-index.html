@@ -1,0 +1,41 @@
+
+        <h1>Recordings</h1>
+
+        <div style="text-align:center" ng-if="loading"><img src="images/loader365.gif" /></div>
+
+        <div class="col-md-2" style="margin-bottom:5px;padding-right: 0px;padding-left: 0px;float: none;" ng-if="!loading">
+            <!--<input type="text" class="form-control filter-track filter-input" ng-model="search" placeholder="Filter Tracks" />-->
+            <input type="text" class="filter-input" ng-model="search.value" placeholder="Filter Recordings" ng-change="searchModel()"/>
+        </div>
+
+        <div class="mui-container-fluid mui-panel" style="overflow-x:auto" ng-if="!loading">
+            <table class="mui-table mui-table--bordered">
+                    <tr>
+                        <th style="color:gray; width:200px;">Created</th>
+                        <th style="color:gray">Name</th>
+                        <!-- <th style="color:gray">Duration</th> -->
+                        <th style="color:gray;width: 60px;">Tracks</th>
+                        <th style="width:30px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <!--<tr ng-repeat="r in recordings | orderBy:'Created':true" ng-if="r.tracks.length>0">-->
+                   <tr ng-repeat="r in formatRecordings | orderBy:'Created':true | filter:search.value" >
+                        <td style="font-size:12px;line-height:30px;" ng-bind="r.Created | nice_datetime"></td>
+                        <td>
+                            <div style="font-size:16px;font-weight:bold;line-height:30px;" ng-bind="r.Name"></div>
+                            <div ng-bind="getGroupName( r.GroupId )"></div>
+                        </td>
+                        <!-- <th ng-bind="r.Duration"></th> -->
+                        <td style="font-size:18px;text-align:center;line-height:30px;" ng-bind="r.tracks.length"></td>
+                        <td style="width:30px;">
+                                <a href="#/recordings/{{r._id}}" class="mui-btn mui-btn--primary mui-btn--raised">
+                                    EDIT
+                                </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+

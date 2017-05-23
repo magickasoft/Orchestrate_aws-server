@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="shortcut icon" href="images/member.png" />
+
+   <title>Log in - Orchestrate</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+
+    <link href="css/mui.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/admin/layout.css" rel="stylesheet" type="text/css" />
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/mui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-cookies.min.js"></script>
+    <script src="js/loading-bar.min.js"></script>
+    <script src="js/lodash.min.js"></script>
+    <script src="js/restangular.js"></script>
+
+    <script>
+      var API_BASE = '/api/';
+      var HTML_BASE = '/';
+      var API_ACCESS_TOKEN = 'token_orchestrate';
+      var API_LOGIN_ENDPOINT  = API_BASE + "oauth/token";
+      var API_AUTH_ENDPOINT   = API_BASE + "auth";
+      var API_AUTH_HEADER     = 'Authorization'; // can be X-Access-Token
+      var API_REDIRECT_ON_SUCCESS = "./dashboard#/";
+
+    </script>
+
+    <script src="js/admin/layout.js"></script>
+    <script src="js/admin/login.js"></script>
+    <script src="js/admin/directives.js"></script>
+
+  </head>
+  <body ng-app="app">
+    <div class="app-content" style="display:none">
+
+        <div class="mui-appbar mui--appbar-line-height">
+          <div class="mui-container-fluid">
+            <span class="mui--text-title">Orchestrate &bull; Admin Area</span>
+          </div>
+        </div>
+        <div class="mui--appbar-height"></div>
+        <div class="mui-container" ng-controller="LoginController">
+
+            <div class="mui-container-fluid mui-panel">
+                <form>
+
+                  <legend>Please sign in</legend>
+                  <div class="mui-textfield">
+                      <input type="text" ng-model="form.username" placeholder="Login"  />
+                      <label>User Login</label>
+                  </div>
+                  <div class="mui-textfield">
+                      <input type="password" ng-model="form.password" placeholder="Password"  />
+                      <label>User Password</label>
+                  </div>
+                    <div class="mui-textfield">
+                        <select class="form-control" name="serverSelect" id="serverSelect"
+                                ng-options="i.name for i in data.availableServers track by i.url"
+                                ng-model="data.selectedServer"
+                                ng-change="onChangeServer()">
+                        </select>
+                        <label for="serverSelect">Choose server: </label>
+                    </div>
+                  <button type="submit" ng-click="submit()"
+                        ng-disabled="!canBeSubmitted()"
+                        class="mui-btn mui-btn--raised mui-btn--primary">
+                        Log In
+                  </button>
+
+                </form>
+
+                <div class="alerts-container" ng-if="errors.length || errors">
+                    <div ng-repeat="e in errors" class="alert alert-danger" ng-bind="e | nice_error"></div>
+                </div>
+
+            </div>
+
+        </div>
+       </div>
+</body>
+</html>

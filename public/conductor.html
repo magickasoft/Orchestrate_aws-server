@@ -1,0 +1,59 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="shortcut icon" href="images/conductor.png" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/conductor/app.conductor.css" />
+    <link href="css/rzslider.css" rel="stylesheet" type="text/css" />
+
+    <title>Conductor - Orchestrate</title>
+
+	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="js/socket.io-1.3.7.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/lodash.compat.min.js"></script>
+    <script src="js/restangular.min.js"></script>
+    <script src="js/rzslider.js"></script>
+
+  	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <script>
+      var API_ROOT = "/api";
+    </script>
+
+    <script src="js/conductor/app.conductor.js"></script>
+
+  </head>
+  <body>
+
+        <div ng-if="selectedGroup"
+            style="text-align:right;padding:3px 10px;font-size:11px;"
+            ng-bind="'Group: ' + selectedGroupName"></div>
+
+        <div class="ng-view-parent">
+            <div ng-view></div>
+        </div>
+
+        <div class="container">
+          <div ng-if="errors.length" style="margin-top:10px" class="alert alert-danger">
+            <div ng-repeat="e in errors" ng-bind="e"></div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+              <div class="col-sm-12">
+                 <pre id="output" style="overflow-y:auto; font-size:11px; min-height:400px; width:100%; background: #f0f0f0"></pre>
+             </div>
+          </div>
+        </div>
+
+  </body>
+</html>

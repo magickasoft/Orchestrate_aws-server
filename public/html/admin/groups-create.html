@@ -1,0 +1,31 @@
+<!--
+<div style="position:absolute;right:20px;top:30px;z-index:200;">
+  <button ng-click="save()" class="mui-btn mui-btn--fab mui-btn--danger">SAVE</button>
+</div>
+-->
+
+<h1>Create New Group</h1>
+
+<div class="mui-container-fluid mui-panel" style="overflow-x:auto">
+    <form>
+
+      <div class="mui-textfield">
+          <input type="text" ng-model="object.Name" placeholder="Group Name"  />
+          <label>Group Name</label>
+      </div>
+
+      <div class="mui-textfield">
+          <input type="text" ng-model="object.InvitationCode" placeholder="Invitation Code"  />
+          <label>Invitation Code <a href="javascript:void(0)" ng-click="newInvitationCode()">(random)</a></label>
+      </div>
+
+      <div class="mui-textfield">
+          <input type="text" ng-model="object.LoginCode" placeholder="Login Code"  />
+          <label>Login Code  <a href="javascript:void(0)" ng-click="newLoginCode()">(random)</a></label>
+      </div>
+
+      <button type="submit" ng-click="save()"
+          class="mui-btn mui-btn--raised mui-btn--primary">Submit</button>
+
+    </form>
+</div>

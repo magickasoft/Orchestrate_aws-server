@@ -1,0 +1,51 @@
+
+    <div class="container" style="max-width:640px;margin-top:5px;">
+        <div class="top-nav btn-group" role="group" aria-label="menu">
+          <button type="button" class="btn btn-lg btn-primary">Group</button>
+          <a ng-if="selectedGroup" href="#/songs" class="btn btn-lg btn-default">Record</a>
+          <a ng-if="selectedGroup" href="#/recordings" class="btn btn-lg btn-default">Play</a>
+        </div>
+    </div>
+
+    <div class="container" style="margin-bottom:10px;">
+        <div class="row" style="margin-top:5px;">
+            <div class="col-sm-12">
+                <h3 style="text-align:left;">Group</h3>
+            </div>
+        </div>
+
+        <div ng-repeat="g in groups" class="selectable-group" ng-click="select(g)"
+                    ng-class="g._id === selectedGroup ? 'selected' : '' ">
+            <div class="form-horizontal"
+                    style="cursor:pointer; padding:10px 0px">
+
+                <div class="form-group" style="margin-bottom:5px">
+                    <label class="control-label col-sm-3 col-sm-offset-2" style="cursor:pointer"> Choral Group Name: </label>
+                    <div class="col-sm-5">
+                        <!-- <input type="text" class="form-control" ng-model="g.Name" readonly/>
+                           <button class="btn btn-primary"
+                            type="button" ng-click="update(g, 'Name')">Rename</button> -->
+                            <strong ng-bind="g.Name" style="font-size:18px;line-height:30px;"></strong>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="g._id === selectedGroup" style="margin-bottom:5px">
+                    <label class="control-label col-sm-3 col-sm-offset-2" style="cursor:pointer;font-weight:normal"> Registration Code: </label>
+                    <div class="col-sm-5">
+                        <input type="text" readonly class="form-control" ng-model="g.InvitationCode" style="width:80px;float:left" />
+                        <button class="btn btn-default" title="Re-generate"
+                            type="button" ng-click="newInvitationCode(g)"><i class="fa fa-refresh"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row"  ng-if="g._id === selectedGroup">
+                <div class="col-sm-4" ng-repeat="i in instruments">
+                    <label style="padding-left:20px;">
+                        <!-- <input type="checkbox" /> -->
+                        <strong ng-bind="i.Code" style="color:gray; font-size:14px;"></strong> &nbsp;
+                        <strong ng-bind="i.Name" style="font-size:14px;"></strong>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>

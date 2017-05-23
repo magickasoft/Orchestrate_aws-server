@@ -1,0 +1,22 @@
+<!--
+<div style="position:absolute;right:20px;top:30px;z-index:200;">
+  <button ng-click="save()" class="mui-btn mui-btn--fab mui-btn--danger">SAVE</button>
+</div>
+-->
+
+<h1>Create New User</h1>
+
+<div class="mui-container-fluid mui-panel" style="overflow-x:auto">
+    <form>
+      <div class="mui-textfield">
+          <input type="text" ng-model="object.Login" placeholder="User Login"  />
+          <label>User Login</label>
+      </div>
+      <div class="mui-textfield">
+          <input type="text" ng-model="object.Password" placeholder="User Password"  />
+          <label>User Password</label>
+      </div>
+      <button type="submit" ng-click="save()" class="mui-btn mui-btn--raised mui-btn--primary">Submit</button>
+
+    </form>
+</div>

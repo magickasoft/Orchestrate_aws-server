@@ -1,0 +1,35 @@
+<div style="position:fixed;right:20px;top:30px;z-index:200;">
+  <a href="#/instruments/create" class="mui-btn mui-btn--fab mui-btn--accent">+</a>
+</div>
+
+<h1>Manage Choral Parts</h1>
+
+<div class="mui-container-fluid mui-panel" style="overflow-x:auto">
+    <table class="mui-table mui-table--bordered">
+        <thead>
+          <tr>
+            <th style="width:40px">#</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="g in instruments | orderBy:'Name'">
+             <td ng-bind="$index + 1"></td>
+             <td>
+                <div style="white-space:nowrap;font-size:20px;color:#FF4081" ng-bind="g.Code"></div>
+             </td>
+             <td>
+                <div style="white-space:nowrap;font-size:20px" ng-bind="g.Name"></div>
+             </td>
+             <td>
+                  <a href="#/instruments/{{g._id}}"
+                    class="mui-btn mui-btn--raised mui-btn--primary"> EDIT
+                  </a>
+                  <!-- <button class="mui-btn mui-btn--raised mui-btn--default"> x </button> -->
+             </td>
+          </tr>
+        </tbody>
+    </table>
+</div>

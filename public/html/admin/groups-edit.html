@@ -1,0 +1,31 @@
+<h1>Edit Group</h1>
+
+<div class="mui-container-fluid mui-panel" style="overflow-x:auto">
+    <form>
+      <div class="mui-textfield">
+          <input type="text" ng-model="object.Name" placeholder="Group Name"  />
+          <label>Group Name</label>
+      </div>
+      <div class="mui-textfield">
+          <input type="text" ng-model="object.InvitationCode" placeholder="Invitation Code"  />
+          <label>Invitation Code <a href="javascript:void(0)" ng-click="newInvitationCode()">(random)</a></label>
+      </div>
+      <div class="mui-textfield">
+          <input type="text" ng-model="object.LoginCode" placeholder="Login Code"  />
+          <label>Login Code <a href="javascript:void(0)" ng-click="newLoginCode()">(random)</a></label>
+      </div>
+
+      <div style="float:right">
+            <button ng-click="destroy()" ng-disabled="!canBeRemoved()"
+              class="mui-btn mui-btn--small mui-btn--raised mui-btn--danger">DELETE GROUP</button>
+      </div>
+
+      <button type="submit" ng-click="save()" class="mui-btn mui-btn--raised mui-btn--primary">Save</button>
+
+      <div class="mui-textfield" style="text-align:right">
+          <label>Recordings: <strong ng-bind="object.Total"></strong></label>
+      </div>
+
+
+    </form>
+</div>

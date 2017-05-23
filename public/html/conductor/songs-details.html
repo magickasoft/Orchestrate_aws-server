@@ -1,0 +1,94 @@
+
+<div class="container" style="max-width:640px;margin-top:5px;">
+    <div class="top-nav btn-group" role="group" aria-label="menu">
+      <a href="#/groups" class="btn btn-lg btn-default">Group</button>
+      <a href="#/songs" class="btn btn-lg btn-primary">Record</a>
+      <a href="#/recordings" class="btn btn-lg btn-default">Play</a>
+    </div>
+</div>
+
+<div class="container">
+    <h3 ng-bind="object.Name"></h3>
+
+    <div class="row" style="margin-top:5px;">
+        <div class="col-sm-6" style="position:relative">
+
+            <h4 style="color:darkgreen;margin-top:10px" ng-if="(members | filter: { groupId : group._id } ).length===0">
+                Waiting for connections to group <strong ng-bind="group.Name"></strong>
+            </h4>
+            <h3 style="margin-top:0px" ng-if="(members | filter: { groupId : group._id } ).length>0">
+              <span ng-bind="(members | filter: { groupId : group._id } ).length"></span> connected member<span
+                  ng-if="(members | filter: { groupId : group._id } ).length>1">s</span>
+            </h3>
+
+<!--             <pre ng-bind="members | filter: { groupId : group._id } | json"></pre>-->
+
+            <table class="table table-bordered  table-striped table-condensed">
+              <tbody>
+                <tr ng-repeat="m in members | filter: { groupId : group._id } ">
+                  <td style="width:30px;text-align:center" ng-bind="$index+1"></td>
+                  <td>
+                    <div style="font-weight:bold;" ng-bind="m.member.Instrument"></div>
+                    <div style="font-size:10px;color:darkblue" ng-bind="m.ip"></div>
+                  </td>
+                  <td>
+                    <div ng-bind="m.member.FirstName + ' ' + m.member.LastName"></div>
+                    <div style="font-size:10px" ng-bind="m.clientId"></div>
+                  </td>
+                  <td style="width:60px;color:{{m.member.status !== 'Ready' ? '#Faa' : '#a0a0a0'}};" ng-bind="m.member.status"></td>
+                  <!--
+                   <td style="text-align:center"><strong ng-if="m.member.volume" ng-bind="m.member.volume + '%'"></td>
+                    -->
+                </tr>
+              </tbody>
+            </table>
+
+
+        </div>
+        <div class="col-sm-6" style="position:relative;margin-bottom: 10px;">
+            <div style="text-align:center;font-size:18px;  margin-bottom:10px;">
+                Maximum Recording Timer
+            </div>
+            <rzslider rz-slider-model="sliderTime.value" rz-slider-options="sliderTime.options"></rzslider>
+            <div ng-if="!recording">
+
+               <div style="display:none;text-align:center;font-size:18px; color:gray; margin-bottom:10px;">
+                  Please make sure your audio is turned on so all members
+                  of the group could hear it.
+               </div>
+                <div style="text-align:center;margin-top:10px;font-size:18px;margin-bottom: 10px;">Invitation Code Reminder: <strong ng-bind="group.InvitationCode"></strong></div>
+                <!--ng-disabled="(members | filter: { groupId : group._id } ).length===0"-->
+                <!--ng-disabled="(members | filter: { groupId : group._id, member: {status : 'Ready'} }).length!=(members | filter: { groupId : group._id}).length || (members | filter: { groupId : group._id}).length===0"-->
+               <button type="button"
+                   ng-disabled="(members | filter: { groupId : group._id, member: {status : 'Recording'} }).length>0  || (members | filter: { groupId : group._id}).length===0 || (members | filter: { groupId : group._id, member: {status : 'Busy'} }).length==(members | filter: { groupId : group._id}).length || (members | filter: { groupId : group._id, member: {status : 'Locked'} }).length==(members | filter: { groupId : group._id}).length"
+                   ng-click="start()" style="width:100%;font-size:32px;lihe-height:80px;height:80px;"
+                   class="btn btn-lg btn-danger">
+                   <div style="position: relative;display: initial;left: 6%;"><div style="width:32px;background-color: #FFF;height:32px;position: absolute;top: 5px;left: -34%;-webkit-border-radius: 16px;-moz-border-radius: 16px;border-radius: 16px;"></div>RECORD</div>
+               </button>
+
+               <!--<div style="text-align:center;margin-top:10px;">Invitation Code Reminder: <strong ng-bind="group.InvitationCode"></strong></div>-->
+
+            </div>
+
+            <div ng-if="recording">
+              <div class="alert alert-warning" style="text-align:center;font-size:20px">
+                  recording... keep silence
+                  <div ng-bind="recordingDuration | nice_duration"></div>
+                  <div>limit
+                      <strond ng-bind="limitAudioDuration | nice_duration"></strond>
+                  </div>
+
+
+              </div>
+
+              <button type="button"
+                   ng-click="stop()" style="width:100%;font-size:32px;lihe-height:80px;height:80px;"
+                   class="btn btn-lg btn-info">
+                  <div style="position: relative;display: initial;left: 5%;"><div style="width: 28px;background-color: #FFF;height: 28px;position: absolute;top: 5px;left: -58%;"></div>STOP</div>
+              </button>
+
+
+            </div>
+        </div>
+      </div>
+</div>

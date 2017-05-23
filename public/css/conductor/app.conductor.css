@@ -1,0 +1,27 @@
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font: 13px Helvetica, Arial; }
+form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+#messages { list-style-type: none; margin: 0; padding: 0; }
+#messages li { padding: 5px 10px; }
+#messages li:nth-child(odd) { background: #eee; }
+
+.top-nav  { width:100%; }
+.top-nav .btn { width: 33%; }
+
+.selectable-group.selected { background: #fafafa;}
+.selectable-group:hover { background: #ffffe0;}
+
+td.selectable:hover { background: #ffffe0;}
+.modal-dialog {
+    margin-top:10%;
+
+}
+.btn.btn-lgBig{
+    padding: 10px 16px;
+    font-size: 15px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+}

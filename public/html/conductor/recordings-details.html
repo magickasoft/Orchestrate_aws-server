@@ -1,0 +1,99 @@
+
+    <div class="container" style="max-width:640px;margin-top:5px;">
+        <div class="top-nav btn-group" role="group" aria-label="menu">
+          <a href="#/groups" class="btn btn-lg btn-default">Group</button>
+          <a href="#/songs" class="btn btn-lg btn-default">Record</a>
+          <a href="#/recordings" class="btn btn-lg btn-primary">Play</a>
+        </div>
+    </div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" style="margin-top:5px;position:relative">
+        <div style="position:absolute;top:5px;right:20px;white-space:nowrap;width:85px;text-align:right;" ng-if="!editor.isVisible()">
+            <button class="btn btn-sm btn-default" type="button" ng-click="toggleFiles()">
+                URLs
+            </button>
+        <!--   <button  class="btn btn-sm btn-default" ng-click="downloadFiles()">
+                <i class="fa fa-download"></i>
+               </button> -->
+        </div>
+        <button class="btn btn-sm btn-default" ng-click="back()">
+           <i class="fa fa-chevron-left"></i>
+           Back
+        </button>
+    </div>
+  </div>
+
+  <div class="row" ng-if="filesVisible">
+    <div class="col-md-12">
+       <textarea readonly class="form-control" rows="5" style="margin-top:20px;max-width:100%;min-width:100%"
+            id="files" ng-bind="getFiles()"></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+        <h3 ng-bind="object.Name"></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+        <div style="line-height:30px" ng-bind="object.Created | nice_datetime"></div>
+    </div>
+    <div class="col-md-2" style="margin-bottom:5px;">
+        <input type="text" class="form-control" ng-model="search" placeholder="Filter Tracks" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+
+        <div style="text-align:center" ng-if="loading"><img src="images/loader365.gif" /></div>
+
+        <div class="table-responsive" ng-if="!loading">
+          <table class="table table-bordered table-striped">
+            <tbody>
+              <tr ng-repeat="t in object.tracks | filter: search">
+                <td style="width:30px; font-size:11px; padding: 0px 10px; line-height:40px;" ng-bind="($index + 1)+'.'"></td>
+                <td style="padding: 0px 10px;  line-height:40px;width:200px">
+                    <a ng-href="{{ t | nice_audio}}" style="font-size:12px; font-weight:bold;" ng-bind="t | nice_track_name"></a></td>
+                <td style="font-size:11px; padding: 0px 10px; line-height:40px;width:60px; " ng-bind="t.Duration | before_dot"></td>
+                <td style="padding:0px;height:40px;"><a target="_blank" ng-href="{{ t | nice_audio}}"><img style="height:40px;width:{{t.width}}px"
+                    ng-src="{{ t.png | nice_png}}" alt="" /></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" style="text-align:right;margin-bottom:15px;">
+
+        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalByDelete">
+          <i class="fa fa-trash"></i>
+          Remove Recording
+        </button>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalByDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Warning!</h4>
+            </div>
+            <div class="modal-body"> Are you sure you want to delete this recording?
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default btn-danger" ng-click="destroy()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

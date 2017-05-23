@@ -1,0 +1,39 @@
+
+    <div class="container" style="max-width:640px;margin-top:5px;">
+        <div class="top-nav btn-group" role="group" aria-label="menu">
+          <a href="#/groups" class="btn btn-lg btn-default">Group</button>
+          <a href="#/songs" class="btn btn-lg btn-default">Record</a>
+          <a href="#/recordings" class="btn btn-lg btn-primary">Play</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row" style="margin-top:5px;">
+            <div class="col-sm-12" style="position:relative">
+                <h3 style="text-align:left;">Select Songs to Play / Study</h3>
+            </div>
+        </div>
+        <div style="text-align:center" ng-if="loading"><img src="images/loader365.gif" /></div>
+            <div class="table-responsive" ng-if="!loading">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="color:gray; width:200px;">Created</th>
+                            <th style="color:gray">Name</th>
+                            <!-- <th style="color:gray">Duration</th> -->
+                            <th style="color:gray;width: 60px;">Tracks</th>
+                            <th style="width:30px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <tr ng-repeat="r in recordings | orderBy:'Created':true" ng-if="r.tracks.length>0">
+                            <td style="font-size:12px;line-height:30px;" ng-bind="r.Created | nice_datetime"></td>
+                            <td style="font-size:16px;font-weight:bold;line-height:30px;" ng-bind="r.Name"></td>
+                            <!-- <th ng-bind="r.Duration"></th> -->
+                            <td style="font-size:18px;text-align:center;line-height:30px;" ng-bind="r.tracks.length"></td>
+                            <td style="width:30px;"><a href="#/recordings/{{r._id}}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-right"</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div> <!-- .container -->

@@ -1,0 +1,22 @@
+<h1>Edit Choral Part</h1>
+
+<div class="mui-container-fluid mui-panel" style="overflow-x:auto">
+    <form>
+      <div class="mui-textfield">
+          <input type="text" ng-model="object.Code" placeholder="Code"  />
+          <label>Code</label>
+      </div>
+
+      <div class="mui-textfield">
+          <input type="text" ng-model="object.Name" placeholder="Name"  />
+          <label>Name</label>
+      </div>
+
+      <div style="float:right">
+            <button ng-click="destroy()" ng-disabled="!canBeRemoved()"
+                class="mui-btn mui-btn--small mui-btn--raised mui-btn--danger">DELETE PART</button>
+      </div>
+
+      <button type="submit" ng-click="save()" class="mui-btn mui-btn--raised mui-btn--primary">Save</button>
+    </form>
+</div>

@@ -1,0 +1,22 @@
+<h1>Edit User</h1>
+
+<div class="mui-container-fluid mui-panel" style="overflow-x:auto">
+    <form>
+      <div class="mui-textfield">
+          <input type="text" ng-model="object.Login" placeholder="User Login"  />
+          <label>User Login</label>
+
+      </div>
+      <div class="mui-textfield">
+          <input type="text" ng-model="object.Password" placeholder="User Password"  />
+          <label>User Password</label>
+      </div>
+
+      <div style="float:right">
+            <button ng-click="destroy()" class="mui-btn mui-btn--small mui-btn--raised mui-btn--danger">DELETE USER</button>
+      </div>
+
+      <button type="submit" ng-click="save()" class="mui-btn mui-btn--raised mui-btn--primary">Save</button>
+
+    </form>
+</div>
